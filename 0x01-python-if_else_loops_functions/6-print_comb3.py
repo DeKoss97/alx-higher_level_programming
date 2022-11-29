@@ -12,4 +12,3 @@ while digit1 <= 8:
         digit2 += 1
     digit2 = digit1 + 1
     digit1 = digit1 + 1
-
