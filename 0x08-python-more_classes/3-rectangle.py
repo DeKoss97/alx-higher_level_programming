@@ -1,31 +1,52 @@
 #!/usr/bin/python3
-"""
-A rectangle with width and height.
-"""
+"""Documentation for a rectangle class"""
 
 
 class Rectangle:
-    """
-    Rectangle functions and data
-    """
+    """Class for a Rectangle shape"""
 
     def __init__(self, width=0, height=0):
-        """ Instantiation
+        """Instantiation of a rectangle
+        Args:
+            width (int, optional): the width of the rectangle
+            height (int, optional): the height of the rectangle
+        Raises:
+            TypeError: if the values are not integers
+            ValueError: if the value is negative
         """
-        self.width = width
-        self.height = height
+
+        if type(width) is not int:
+            raise TypeError("width must be an integer")
+        if width < 0:
+            raise ValueError("width must be >= 0")
+        self.__width = width
+
+        if type(height) is not int:
+            raise TypeError("height must be an integer")
+        if height < 0:
+            raise ValueError("height must be >= 0")
+        self.__height = height
 
     @property
     def width(self):
-        """ Getter for width
+        """Returns the width of the instance
+        Returns:
+            the width of the instance of the rectangle
         """
+
         return self.__width
 
     @width.setter
     def width(self, value):
-        """ Setter for width
+        """Sets the width of the instance
+        Args:
+            value (int): the width of the instance
+        Raises:
+            TypeError: if the value is not an integer
+            ValueError: if the value is negative
         """
-        if type(value) != int:
+
+        if type(value) is not int:
             raise TypeError("width must be an integer")
         if value < 0:
             raise ValueError("width must be >= 0")
@@ -33,44 +54,50 @@ class Rectangle:
 
     @property
     def height(self):
-        """ Getter for height
+        """Returns the height of the instance
+        Returns:
+            the height of the instance
         """
+
         return self.__height
 
     @height.setter
     def height(self, value):
-        """ Setter for height
+        """Sets the height of the instance
+        Args:
+            value (int): the height of the instance
+        Raises:
+            TypeError: if the value is not an integer
+            ValueError: if the value is negative
         """
-        if type(value) != int:
-            raise TypeError("width must be an integer")
+
+        if type(value) is not int:
+            raise TypeError("height must be an integer")
         if value < 0:
             raise ValueError("height must be >= 0")
         self.__height = value
 
-    # Functions
     def area(self):
-        """ Returns area of rectangle
-        """
-        return self.__width * self.__height
+        """Returns the area of the instance"""
+
+        return self.__height * self.__width
 
     def perimeter(self):
-        """ Returns perimeter of rectangle
-        """
-        if self.__width == 0 or self.__height == 0:
+        """Returns the perimeter of the instance"""
+
+        if self.__height == 0 or self.__width == 0:
             return 0
-        else:
-            return 2 * (self.__width + self.__height)
+        return 2 * self.__height + 2 * self.__width
 
     def __str__(self):
-        """ print() __str__ method funtion to return rectangle in char '#'
-        """
-        res = ""
-        if self.__width == 0 or self.__height == 0:
-            return res
+        """Functionality for printing and using str() functions"""
 
+        if self.__width == 0 or self.__height == 0:
+            return ""
+        rectangle = []
         for i in range(self.__height):
-            if i == self.__height - 1:
-                res += ('#' * self.__width)
-            else:
-                res += (('#' * self.__width) + '\n')
-        return 
+            for j in range(self.__width):
+                rectangle.append('#')
+            if i is not self.__height - 1:
+                rectangle.append('\n')
+        return''.join(rectangle)
